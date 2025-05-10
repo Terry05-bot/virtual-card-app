@@ -1,0 +1,64 @@
+<script>
+    if (!localStorage.getItem('loggedInUser')) {
+      window.location.href = "login.html";
+    }
+  </script>
+  
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Virtual Card Maker</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="container">
+    <h1>🎨 Virtual Card Maker</h1>
+
+    <div class="form">
+      <input type="file" id="imageUpload" accept="image/*" /> 
+      <input type="file" id="bgUpload" accept="image/*" />
+      <label for="fontColorPicker">Text Color:</label>
+      <input type="color" id="fontColorPicker" onchange="changeFontColor(this.value)" />
+      <select id="fontSelect" onchange="changeFontStyle(this.value)">
+        <option value="Arial">Arial</option>
+        <option value="Georgia">Georgia</option>
+        <option value="'Courier New', monospace">Courier New</option>
+        <option value="'Times New Roman'">Times New Roman</option>
+        <option value="'Comic Sans MS'">Comic Sans MS</option>
+        <option value="Verdana">Verdana</option>
+      </select>       
+      <input id="nameInput" placeholder="Enter your name" />
+      <input id="messageInput" placeholder="Enter a message" />
+      <button onclick="updateCard()">Update Card</button>
+    </div>
+    <select id="cardSizeSelect" onchange="changeCardSize(this.value)">
+        <option value="small">Small (300x200)</option>
+        <option value="medium" selected>Medium (500x300)</option>
+        <option value="large">Large (700x400)</option>
+    </select>      
+    <div id="card">
+      <h2 id="cardName">Your Name</h2>
+      <img id="uploadedImage" src="" alt="Uploaded Image" style="max-width:100px; max-height:100px; display:none;"/>
+      <p id="cardMessage">Your message here</p>
+    </div>
+
+    <div class="buttons">
+      <button onclick="downloadAsImage()">Download as Image</button>
+      <button onclick="downloadAsPDF()">Download as PDF</button>
+    </div>
+    <div class="share">
+        <button onclick="shareOnTwitter()">Share on Twitter</button>
+        <button onclick="shareOnFacebook()">Share on Facebook</button>
+    </div>      
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
